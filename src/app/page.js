@@ -4,7 +4,7 @@
 import React from "react";
 import { PineconeIcon } from "./icons/PineconeIcon";
 import { NextArrow } from "./icons/NextArrow";
-``;
+
 export default function SignUpForm() {
   return (
     // Container
@@ -31,8 +31,8 @@ export default function SignUpForm() {
             </label>
             <input
               type="text"
-              defaultValue=" "
-              className="w-full h-11 px-3 text-sm rounded-lg border border-gray-300 focus:outline-none focus:border-black focus:ring-1 focus:ring-black transition"
+              defaultValue="Placeholder "
+              className="w-full h-11 px-3 text-sm text-gray-500 rounded-lg border border-gray-300 focus:outline-none focus:border-black focus:ring-1 focus:ring-black transition"
             />
           </div>
 
@@ -43,8 +43,8 @@ export default function SignUpForm() {
             </label>
             <input
               type="text"
-              defaultValue=" "
-              className="w-full h-11 px-3 text-sm rounded-lg border border-gray-300 focus:outline-none focus:border-black focus:ring-1 focus:ring-black transition"
+              defaultValue="Placeholder "
+              className="w-full h-11 px-3 text-sm text-gray-500 rounded-lg border border-gray-300 focus:outline-none focus:border-black focus:ring-1 focus:ring-black transition"
             />
           </div>
 
@@ -55,8 +55,8 @@ export default function SignUpForm() {
             </label>
             <input
               type="text"
-              defaultValue=" "
-              className="w-full h-11 px-3 text-sm rounded-lg border border-gray-300 focus:outline-none focus:border-black focus:ring-1 focus:ring-black transition"
+              defaultValue="Placeholder "
+              className="w-full h-11 px-3 text-sm text-gray-500 rounded-lg border border-gray-300 focus:outline-none focus:border-black focus:ring-1 focus:ring-black transition"
             />
           </div>
 
@@ -67,15 +67,7 @@ export default function SignUpForm() {
               className="w-full h-11 bg-[#212121] hover:bg-black text-white text-sm font-medium rounded-lg flex items-center justify-center gap-2 transition"
             >
               <span>Continue 1/3</span>
-              <svg
-                className="w-4 h-4"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                strokeWidth="2"
-              >
-                <NextArrow />
-              </svg>
+              <NextArrow />
             </button>
           </div>
         </form>

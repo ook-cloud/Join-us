@@ -1,5 +1,5 @@
 import * as React from "react";
-const PineconeIcon = (props) => (
+export const PineconeIcon = (props) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     xmlnsXlink="http://www.w3.org/1999/xlink"
@@ -28,4 +28,3 @@ const PineconeIcon = (props) => (
     </defs>
   </svg>
 );
-// export default SvgComponent
