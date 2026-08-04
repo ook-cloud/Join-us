@@ -7,7 +7,7 @@ import { NextArrow } from "./icons/NextArrow";
 ``;
 export default function SignUpForm() {
   return (
-    // Background & Container
+    // Container
     <div className="bg-gray-100 min-h-screen flex items-center justify-center p-4 font-sans">
       {/* Main Card */}
       <div className="bg-white rounded-2xl shadow-sm w-full max-w-[400px] p-8">
@@ -83,11 +83,3 @@ export default function SignUpForm() {
     </div>
   );
 }
-
-// <body class="bg-custom-bg font-sans flex items-center justify-center p-4">
-//   <div class="H-655px w-480px bg-white/50 border border-gray-3px rounded">
-//     <h1 className="flex items-center justify-center h-screen text-red-900 dark:text-white text-6xl">
-//       Title
-//     </h1>
-//   </div>
-// </body>
