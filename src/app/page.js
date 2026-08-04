@@ -3,6 +3,8 @@
 // import Image from "next/image";
 import React from "react";
 import { PineconeIcon } from "./icons/PineconeIcon";
+import { NextArrow } from "./icons/NextArrow";
+``;
 export default function SignUpForm() {
   return (
     // Background & Container
@@ -72,11 +74,7 @@ export default function SignUpForm() {
                 viewBox="0 0 24 24"
                 strokeWidth="2"
               >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M9 5l7 7-7 7"
-                />
+                <NextArrow />
               </svg>
             </button>
           </div>
