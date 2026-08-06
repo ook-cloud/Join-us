@@ -10,5 +10,3 @@ export const NextArrow = (props) => (
     <path fill="#fff" d="M1.41 0 0 1.41 4.58 6 0 10.59 1.41 12l6-6-6-6Z" />
   </svg>
 );
-
-export default NextArrow;

@@ -1,6 +1,6 @@
 import * as React from "react";
 
-const DateIcon = (props) => (
+export const DateIcon = (props) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width={10}
@@ -14,5 +14,3 @@ const DateIcon = (props) => (
     />
   </svg>
 );
-
-export default DateIcon;
