@@ -1,3 +1,6 @@
+import { PineconeIcon } from "../icons/PineconeIcon";
+import { NextArrow } from "../icons/NextArrow";
+
 export const StepOne = (props) => {
   return (
     <div className="bg-white rounded-2xl shadow-sm w-full max-w-[400px] p-8">

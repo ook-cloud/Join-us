@@ -2,9 +2,11 @@
 
 // import Image from "next/image";
 import React from "react";
-import { PineconeIcon } from "./icons/PineconeIcon";
-import { NextArrow } from "./icons/NextArrow";
+
 import { StepOne } from "./features/StepOne";
+import { StepTwo } from "./features/StepTwo";
+import { StepThree } from "./features/StepThree";
+import { StepFour } from "./features/StepFour";
 
 const getStepsFromLocal = () => {
   const savedStep =
@@ -21,10 +23,10 @@ const getStepsFromLocal = () => {
 export default function SignUpForm() {
   const [steps, setSteps] = useState(getStepsFromLocal());
 
-  const firstStep = steps === 1;
-  const secondStep = steps === 2;
-  const thirdStep = steps === 3;
-  const final = steps === 4;
+  const StepOne = steps === 1;
+  const StepTwo = steps === 2;
+  const StepThree = steps === 3;
+  const StepFour = steps === 4;
   const handleStep = () => {
     const nextStep = steps + 1;
     setSteps(nextStep);
