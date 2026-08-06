@@ -27,54 +27,270 @@ export default function RootLayout({ children }) {
   );
 }
 
-// import React, { useState } from 'react';
+"use client";
 
-// export default function App() {
-//   const [count, setCount] = useState(0);
+import { Pineconelogo } from "./icons/PineconeLogo";
+import { Arrow } from "./icons/Arrow";
+import { Arrowl } from "./icons/Arrowl";
+import { useState } from "react";
+import { Upload } from "./icons/Upload";
 
-//   return (
-//     <div className="min-h-screen bg-gray-100 flex items-center justify-center p-4">
-//       {/* Карт чингэлэг */}
-//       <div className="bg-white p-8 rounded-2xl shadow-xl max-w-md w-full text-center space-y-6">
+const getStepsFromLocal = () => {
+  const savedStep =
+    typeof window !== "undefined" ? localStorage?.getItem("currentStep") : null;
+  if (savedStep) {
+    const step = Number(savedStep);
+    if (step === 4) return 1;
+    return step;
+  } else {
+    return 1;
+  }
+};
 
-//         {/* Гарчиг болон тайлбар */}
-//         <div className="space-y-2">
-//           <h1 className="text-3xl font-extrabold text-gray-900 tracking-tight">
-//             React + Tailwind CSS
-//           </h1>
-//           <p className="text-sm text-gray-500">
-//             Код бичихэд маш хялбар, хурдан бөгөөд загварлаг!
-//           </p>
-//         </div>
+export default function Home() {
+  const [steps, setSteps] = useState(getStepsFromLocal());
 
-//         {/* Төлөв (State) харуулах хэсэг */}
-//         <div className="bg-blue-50 p-6 rounded-xl border border-blue-100">
-//           <p className="text-xs font-semibold text-blue-600 uppercase tracking-wide">
-//             Тоолуур:
-//           </p>
-//           <p className="text-4xl font-bold text-blue-900 mt-1">
-//             {count}
-//           </p>
-//         </div>
+  const firstStep = steps === 1;
+  const secondStep = steps === 2;
+  const thirdStep = steps === 3;
+  const final = steps === 4;
+  const handleStep = () => {
+    const nextStep = steps + 1;
+    setSteps(nextStep);
 
-//         {/* Товчлуурууд */}
-//         <div className="flex justify-center gap-4">
-//           <button
-//             onClick={() => setCount(count - 1)}
-//             className="px-5 py-2.5 rounded-lg bg-red-500 text-white font-medium hover:bg-red-600 active:scale-95 transition duration-150 shadow-md"
-//           >
-//             Хасах
-//           </button>
+    if (typeof window !== "undefined") {
+      if (nextStep === 4) {
+        localStorage.setItem("currentStep", 1);
+      } else {
+        localStorage.setItem("currentStep", nextStep);
+      }
+    }
+  };
 
-//           <button
-//             onClick={() => setCount(count + 1)}
-//             className="px-5 py-2.5 rounded-lg bg-indigo-600 text-white font-medium hover:bg-indigo-700 active:scale-95 transition duration-150 shadow-md"
-//           >
-//             Нэмэх
-//           </button>
-//         </div>
+  const handleBackButtonn = () => {
+    const prevStep = steps - 1;
+    setSteps(prevStep);
+    if (typeof window !== "undefined") {
+      localStorage.setItem("currentStep", prevStep);
+    }
+  };
 
-//       </div>
-//     </div>
-//   );
-// }
+  const handleReset = () => {
+    setSteps(1);
+    if (typeof window !== "undefined") {
+      localStorage.setItem("currentStep", 1);
+    }
+  };
+
+  return (
+    <div className="w-screen h-screen flex items-center justify-center bg-gray-50">
+      {firstStep && (
+        <div className="absolute w-[480px] h-[655px] top-[182px] left-[480px] rounded-lg flex flex-col justify-between p-8 bg-white border border-gray-100 shadow-sm">
+          <div className="flex flex-col gap-7">
+            <Pineconelogo />
+
+            <div className="flex flex-col gap-1">
+              <h1 className="text-2xl font-bold text-gray-900">Join Us! 😎</h1>
+              <p className="text-gray-500 text-sm">
+                Please provide all current information accurately.
+              </p>
+            </div>
+
+            <div className="flex flex-col gap-4">
+              <div className="flex flex-col gap-1.5">
+                <label className="text-sm font-semibold text-gray-800">
+                  First name <span className="text-red-500">*</span>
+                </label>
+                <input
+                  type="text"
+                  placeholder="Placeholder"
+                  className="w-full h-11 px-3 border border-[#CBD5E1] focus:border-[#3b82f6] rounded-lg text-gray-700 shadow-sm outline-none transition-colors"
+                />
+              </div>
+
+              <div className="flex flex-col gap-1.5">
+                <label className="text-sm font-semibold text-gray-800">
+                  Last name <span className="text-red-500">*</span>
+                </label>
+                <input
+                  type="text"
+                  placeholder="Placeholder"
+                  className="w-full h-11 px-3 border border-[#CBD5E1] focus:border-[#3b82f6] rounded-lg text-gray-700 shadow-sm outline-none transition-colors"
+                />
+              </div>
+
+              <div className="flex flex-col gap-1.5">
+                <label className="text-sm font-semibold text-gray-800">
+                  Username <span className="text-red-500">*</span>
+                </label>
+                <input
+                  type="text"
+                  placeholder="Placeholder"
+                  className="w-full h-11 px-3 border border-[#CBD5E1] focus:border-[#3b82f6] rounded-lg text-gray-700 shadow-sm outline-none transition-colors"
+                />
+              </div>
+            </div>
+          </div>
+
+          <button
+            onClick={handleStep}
+            className="flex items-center justify-center w-full h-11 gap-2 bg-[#111111] text-white rounded-md hover:bg-black transition-colors"
+          >
+            <span className="text-sm font-medium">Continue 1/3</span> <Arrow />
+          </button>
+        </div>
+      )}
+
+      {secondStep && (
+        <div className="absolute w-[480px] h-[655px] top-[182px] left-[480px] rounded-lg flex flex-col justify-between p-8 bg-white border border-gray-100 shadow-sm">
+          <div className="flex flex-col gap-7">
+            <Pineconelogo />
+
+            <div className="flex flex-col gap-1">
+              <h1 className="text-2xl font-bold text-gray-900">Join Us! 😎</h1>
+              <p className="text-gray-500 text-sm">
+                Please provide all current information accurately.
+              </p>
+            </div>
+
+            <div className="flex flex-col gap-4">
+              <div className="flex flex-col gap-1.5">
+                <label className="text-sm font-semibold text-gray-800">
+                  Email <span className="text-red-500">*</span>
+                </label>
+                <input
+                  type="text"
+                  placeholder="Placeholder"
+                  className="w-full h-11 px-3 border border-[#CBD5E1] focus:border-[#3b82f6] rounded-lg text-gray-700 shadow-sm outline-none transition-colors"
+                />
+              </div>
+
+              <div className="flex flex-col gap-1.5">
+                <label className="text-sm font-semibold text-gray-800">
+                  Phone number <span className="text-red-500">*</span>
+                </label>
+                <input
+                  type="text"
+                  placeholder="Placeholder"
+                  className="w-full h-11 px-3 border border-[#CBD5E1] focus:border-[#3b82f6] rounded-lg text-gray-700 shadow-sm outline-none transition-colors"
+                />
+              </div>
+
+              <div className="flex flex-col gap-1.5">
+                <label className="text-sm font-semibold text-gray-800">
+                  Password <span className="text-red-500">*</span>
+                </label>
+                <input
+                  type="password"
+                  placeholder="Placeholder"
+                  className="w-full h-11 px-3 border border-[#CBD5E1] focus:border-[#3b82f6] rounded-lg text-gray-700 shadow-sm outline-none transition-colors"
+                />
+              </div>
+              <div className="flex flex-col gap-1.5">
+                <label className="text-sm font-semibold text-gray-800">
+                  Confirm password <span className="text-red-500">*</span>
+                </label>
+                <input
+                  type="password"
+                  placeholder="Placeholder"
+                  className="w-full h-11 px-3 border border-[#CBD5E1] focus:border-[#3b82f6] rounded-lg text-gray-700 shadow-sm outline-none transition-colors"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div className="flex gap-2">
+            <button
+              onClick={handleBackButtonn}
+              className="flex items-center justify-center w-32 h-11 rounded-md gap-2 border border-[#CBD5E1] bg-white transition-colors hover:bg-gray-50"
+            >
+              <Arrowl />
+              <span className="text-sm font-medium text-gray-800">Back</span>
+            </button>
+            <button
+              onClick={handleStep}
+              className="flex flex-1 items-center justify-center h-11 gap-2 bg-[#111111] text-white rounded-md hover:bg-black transition-colors"
+            >
+              <span className="text-sm font-medium">Continue 2/3</span>{" "}
+              <Arrow />
+            </button>
+          </div>
+        </div>
+      )}
+
+      {thirdStep && (
+        <div className="absolute w-[480px] h-[655px] top-[182px] left-[480px] rounded-lg flex flex-col justify-between p-8 bg-white border border-gray-100 shadow-sm">
+          <div className="flex flex-col gap-7">
+            <Pineconelogo />
+
+            <div className="flex flex-col gap-1">
+              <h1 className="text-2xl font-bold text-gray-900">Join Us! 😎</h1>
+              <p className="text-gray-500 text-sm">
+                Please provide all current information accurately.
+              </p>
+            </div>
+
+            <div className="flex flex-col gap-4">
+              <div className="flex flex-col gap-1.5">
+                <label className="text-sm font-semibold text-gray-800">
+                  Date of Birth <span className="text-red-500">*</span>
+                </label>
+                <input
+                  type="date"
+                  className="w-full h-11 px-3 border border-[#CBD5E1] focus:border-[#3b82f6] rounded-lg text-gray-700 shadow-sm outline-none transition-colors"
+                />
+              </div>
+
+              <div className="flex flex-col gap-1.5">
+                <label className="text-sm font-semibold text-gray-800">
+                  Profile image <span className="text-red-500">*</span>
+                </label>
+
+                <div className="w-full h-[180px] min-h-[80px] rounded-lg p-4 gap-2 bg-[#7F7F800D] flex items-center justify-center flex-col border border-dashed border-[#CBD5E1] cursor-pointer hover:bg-gray-100 transition-colors">
+                  <Upload />
+                  <span className="text-sm font-semibold text-gray-800">
+                    Add image
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="flex gap-2">
+            <button
+              onClick={handleBackButtonn}
+              className="flex items-center justify-center w-32 h-11 rounded-md gap-2 border border-[#CBD5E1] bg-white transition-colors hover:bg-gray-50"
+            >
+              <Arrowl />
+              <span className="text-sm font-medium text-gray-800">Back</span>
+            </button>
+            <button
+              onClick={handleStep}
+              className="flex flex-1 items-center justify-center h-11 gap-2 bg-[#111111] text-white rounded-md hover:bg-black transition-colors"
+            >
+              <span className="text-sm font-medium">Continue 3/3</span>
+              <Arrow />
+            </button>
+          </div>
+        </div>
+      )}
+
+      {final && (
+        <div className="absolute w-[480px] h-[655px] top-[182px] left-[480px] rounded-lg flex flex-col justify-between p-8 bg-white border border-gray-100 shadow-sm">
+          <div className="flex flex-col gap-7">
+            <Pineconelogo />
+
+            <div className="flex flex-col gap-1">
+              <h1 className="text-2xl font-bold text-gray-900">
+                You&apos;re All Set! 🔥
+              </h1>
+              <p className="text-gray-500 text-sm">
+                We have received your submission. Thank you!
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
