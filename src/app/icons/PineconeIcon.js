@@ -28,3 +28,5 @@ export const PineconeIcon = (props) => (
     </defs>
   </svg>
 );
+
+export default PineconeIcon;

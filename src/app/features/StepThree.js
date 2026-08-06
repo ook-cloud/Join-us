@@ -1,7 +1,7 @@
 import { PineconeIcon } from "../icons/PineconeIcon";
 import { PrevArrow } from "../icons/PrevArrow";
 import { NextArrow } from "../icons/NextArrow";
-import { ImageIcon } from "../icons/ImageIcon";
+import ImageIcon from "../icons/ImageIcon";
 
 export const StepThree = (props) => {
   return (

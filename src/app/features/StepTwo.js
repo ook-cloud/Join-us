@@ -1,11 +1,10 @@
 import { PineconeIcon } from "../icons/PineconeIcon";
 import { PrevArrow } from "../icons/PrevArrow";
 import { NextArrow } from "../icons/NextArrow";
-import { PrevArrow } from "../icons/PrevArrow";
+// import { PrevArrow } from "../icons/PrevArrow";
 
 export const StepTwo = (props) => {
   return (
-    //  {secondStep && (
     <div className="absolute w-[480px] h-[655px] top-[182px] left-[480px] rounded-lg flex flex-col justify-between p-8 bg-white border border-gray-100 shadow-sm">
       <div className="flex flex-col gap-7">
         <PineconeIcon />
