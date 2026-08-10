@@ -4,13 +4,15 @@ import { NextArrow } from "../icons/NextArrow";
 export const StepOne = ({ handleNextStep }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
-    handleNextStep();
+    handleNextStep(); // Энд дараагийн алхам руу шилжих функц ажиллана
   };
+
   return (
     <div className="bg-white rounded-2xl shadow-sm w-full max-w-[400px] p-8">
       <PineconeIcon />
+
       {/* Title */}
-      <div className="mb-6">
+      <div className="mb-6 mt-4">
         <h1 className="text-2xl font-bold text-gray-900 tracking-tight flex items-center gap-1.5">
           Join Us! <span>😎</span>
         </h1>
@@ -20,7 +22,7 @@ export const StepOne = ({ handleNextStep }) => {
       </div>
 
       {/* Form */}
-      <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
+      <form className="space-y-4" onSubmit={handleSubmit}>
         {/* First Name */}
         <div>
           <label className="block text-xs font-semibold text-gray-900 mb-1">
@@ -29,8 +31,8 @@ export const StepOne = ({ handleNextStep }) => {
           <input
             type="text"
             required
-            placeholder="Your first name"
-            className="w-full h-11 px-3 text-sm text-gray-500 rounded-lg border border-gray-300 focus:outline-none focus:border-black focus:ring-1 focus:ring-black transition"
+            placeholder="Placeholder"
+            className="w-full h-11 px-3 text-sm text-gray-900 rounded-lg border border-gray-300 focus:outline-none focus:border-black focus:ring-1 focus:ring-black transition placeholder:text-gray-400"
           />
         </div>
 
@@ -42,8 +44,8 @@ export const StepOne = ({ handleNextStep }) => {
           <input
             type="text"
             required
-            placeholder="Your first name"
-            className="w-full h-11 px-3 text-sm text-gray-500 rounded-lg border border-gray-300 focus:outline-none focus:border-black focus:ring-1 focus:ring-black transition"
+            placeholder="Placeholder"
+            className="w-full h-11 px-3 text-sm text-gray-900 rounded-lg border border-gray-300 focus:outline-none focus:border-black focus:ring-1 focus:ring-black transition placeholder:text-gray-400"
           />
         </div>
 
@@ -55,8 +57,8 @@ export const StepOne = ({ handleNextStep }) => {
           <input
             type="text"
             required
-            placeholder="Your first name"
-            className="w-full h-11 px-3 text-sm text-gray-500 rounded-lg border border-gray-300 focus:outline-none focus:border-black focus:ring-1 focus:ring-black transition"
+            placeholder="Placeholder"
+            className="w-full h-11 px-3 text-sm text-gray-900 rounded-lg border border-gray-300 focus:outline-none focus:border-black focus:ring-1 focus:ring-black transition placeholder:text-gray-400"
           />
         </div>
 

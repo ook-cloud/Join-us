@@ -3,9 +3,9 @@ import { PrevArrow } from "../icons/PrevArrow";
 import { NextArrow } from "../icons/NextArrow";
 import { ImageIcon } from "../icons/ImageIcon";
 
-export const StepThree = (props) => {
+export const StepThree = ({ handleNextStep, handleBackButton }) => {
   return (
-    <div className="absolute w-[480px] h-[655px] top-[182px] left-[480px] rounded-lg flex flex-col justify-between p-8 bg-white border border-gray-100 shadow-sm">
+    <div className="w-[480px] h-[655px] rounded-lg flex flex-col justify-between p-8 bg-white border border-gray-100 shadow-sm">
       <div className="flex flex-col gap-7">
         <PineconeIcon />
 
@@ -44,14 +44,14 @@ export const StepThree = (props) => {
 
       <div className="flex gap-2">
         <button
-          onClick={handleBackButtonn}
+          onClick={handleBackButton}
           className="flex items-center justify-center w-32 h-11 rounded-md gap-2 border border-[#CBD5E1] bg-white transition-colors hover:bg-gray-50"
         >
           <PrevArrow />
           <span className="text-sm font-medium text-gray-800">Back</span>
         </button>
         <button
-          onClick={handleStep}
+          onClick={handleNextStep}
           className="flex flex-1 items-center justify-center h-11 gap-2 bg-[#111111] text-white rounded-md hover:bg-black transition-colors"
         >
           <span className="text-sm font-medium">Continue 3/3</span>

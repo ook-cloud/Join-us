@@ -6,7 +6,6 @@ import { StepOne } from "./features/StepOne";
 import { StepTwo } from "./features/StepTwo";
 import { StepThree } from "./features/StepThree";
 import { StepFour } from "./features/StepFour";
-import { PineconeIcon } from "./icons/PineconeIcon";
 
 const getStepsFromLocal = () => {
   const savedStep =
@@ -29,10 +28,10 @@ function checkLocal() {
 export default function Home() {
   const [steps, setSteps] = useState(getStepsFromLocal());
 
-  // const StepOne = steps === 1;
-  // const StepTwo = steps === 2;
-  // const StepThree = steps === 3;
-  // const StepFour = steps === 4;
+  const stepOne = steps === 1;
+  const stepTwo = steps === 2;
+  const stepThree = steps === 3;
+  const stepFour = steps === 4;
   const handleNextStep = () => {
     if (steps < 4) {
       setSteps(steps + 1);
@@ -55,10 +54,8 @@ export default function Home() {
   return (
     // Container
     <div className="bg-gray-100 min-h-screen flex items-center justify-center p-4 font-sans">
-      {StepOne === 1 && (
-        <StepOne handleNextStep={handleNextStep} steps={steps} />
-      )}
-      {StepTwo === 2 && (
+      {stepOne && <StepOne handleNextStep={handleNextStep} steps={steps} />}
+      {stepTwo && (
         <StepTwo
           handleNextStep={handleNextStep}
           handleBackButton={handleBackButton}
@@ -66,14 +63,14 @@ export default function Home() {
         />
       )}
 
-      {StepThree === 3 && (
+      {stepThree && (
         <StepThree
           handleBackButton={handleBackButton}
           handleNextStep={handleNextStep}
           steps={steps}
         />
       )}
-      {StepFour === 4 && <StepFour />}
+      {stepFour && <StepFour />}
     </div>
   );
 }
