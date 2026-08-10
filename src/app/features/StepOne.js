@@ -28,7 +28,8 @@ export const StepOne = ({ handleNextStep }) => {
           </label>
           <input
             type="text"
-            defaultValue="Placeholder "
+            required
+            placeholder="Your first name"
             className="w-full h-11 px-3 text-sm text-gray-500 rounded-lg border border-gray-300 focus:outline-none focus:border-black focus:ring-1 focus:ring-black transition"
           />
         </div>
@@ -40,7 +41,8 @@ export const StepOne = ({ handleNextStep }) => {
           </label>
           <input
             type="text"
-            defaultValue="Placeholder "
+            required
+            placeholder="Your first name"
             className="w-full h-11 px-3 text-sm text-gray-500 rounded-lg border border-gray-300 focus:outline-none focus:border-black focus:ring-1 focus:ring-black transition"
           />
         </div>
@@ -52,7 +54,8 @@ export const StepOne = ({ handleNextStep }) => {
           </label>
           <input
             type="text"
-            defaultValue="Placeholder "
+            required
+            placeholder="Your first name"
             className="w-full h-11 px-3 text-sm text-gray-500 rounded-lg border border-gray-300 focus:outline-none focus:border-black focus:ring-1 focus:ring-black transition"
           />
         </div>
