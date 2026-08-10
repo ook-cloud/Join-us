@@ -1,7 +1,11 @@
 import { PineconeIcon } from "../icons/PineconeIcon";
 import { NextArrow } from "../icons/NextArrow";
 
-export const StepOne = (props) => {
+export const StepOne = ({ handleNextStep }) => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    handleNextStep();
+  };
   return (
     <div className="bg-white rounded-2xl shadow-sm w-full max-w-[400px] p-8">
       <PineconeIcon />
@@ -57,7 +61,6 @@ export const StepOne = (props) => {
         <div className="pt-2">
           <button
             type="submit"
-            onClick={props.handleStep}
             className="w-full h-11 bg-[#212121] hover:bg-black text-white text-sm font-medium rounded-lg flex items-center justify-center gap-2 transition"
           >
             <span>Continue 1/3</span>
