@@ -1,13 +1,12 @@
 "use client";
 
-// import Image from "next/image";
-import React from "react";
+import { useState } from "react";
 
 import { StepOne } from "./features/StepOne";
 import { StepTwo } from "./features/StepTwo";
 import { StepThree } from "./features/StepThree";
 import { StepFour } from "./features/StepFour";
-
+import { PineconeIcon } from "./icons/PineconeIcon";
 const getStepsFromLocal = () => {
   const savedStep =
     typeof window !== "undefined" ? localStorage?.getItem("currentStep") : null;
@@ -20,31 +19,32 @@ const getStepsFromLocal = () => {
   }
 };
 
-export default function SignUpForm() {
+function checkLocal() {
+  return JSON.parse(localStorage.getItem("user") || "null");
+
+  const data = localStorage.getItem("user");
+
+  if (data) {
+    return JSON.parse(data);
+  }
+  return null;
+}
+export default function Home() {
   const [steps, setSteps] = useState(getStepsFromLocal());
 
   const StepOne = steps === 1;
   const StepTwo = steps === 2;
   const StepThree = steps === 3;
   const StepFour = steps === 4;
-  const handleStep = () => {
-    const nextStep = steps + 1;
-    setSteps(nextStep);
-
-    if (typeof window !== "undefined") {
-      if (nextStep === 4) {
-        localStorage.setItem("currentStep", 1);
-      } else {
-        localStorage.setItem("currentStep", nextStep);
-      }
+  const handleNextStep = () => {
+    if (steps < 4) {
+      setSteps(steps + 1);
     }
   };
 
-  const handleBackButtonn = () => {
-    const prevStep = steps - 1;
-    setSteps(prevStep);
-    if (typeof window !== "undefined") {
-      localStorage.setItem("currentStep", prevStep);
+  const handleBackButton = () => {
+    if (steps > 1) {
+      setSteps(steps - 1);
     }
   };
 
@@ -58,8 +58,23 @@ export default function SignUpForm() {
   return (
     // Container
     <div className="bg-gray-100 min-h-screen flex items-center justify-center p-4 font-sans">
-      {/* Main Card */}
-      <StepOne handleStep={handleStep} />
+      {StepOne && <StepOne handleNextStep={handleNextStep} steps={steps} />}
+      {StepTwo && (
+        <StepTwo
+          handleNextStep={handleNextStep}
+          handleBackButton={handleBackButton}
+          steps={steps}
+        />
+      )}
+
+      {StepThree && (
+        <StepThree
+          handleBackButton={handleBackButton}
+          handleNextStep={handleNextStep}
+          steps={steps}
+        />
+      )}
+      {StepFour && <StepFour />}
     </div>
   );
 }
