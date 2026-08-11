@@ -1,14 +1,18 @@
 import { PineconeIcon } from "../icons/PineconeIcon";
 import { NextArrow } from "../icons/NextArrow";
+// import { useState } from "react"
+
+// const ALREADY_TEXT_USER_NAME = ["Amgaa"];
+// const letters = "qwertyuiopasdfghjklzxcvbnm";
 
 export const StepOne = ({ handleNextStep }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
-    handleNextStep(); // Энд дараагийн алхам руу шилжих функц ажиллана
+    handleNextStep();
   };
 
   return (
-    <div className="bg-white rounded-2xl shadow-sm w-full max-w-[400px] p-8">
+    <div className="bg-white rounded-2xl shadow-sm w-full max-w-100 p-8">
       <PineconeIcon />
 
       {/* Title */}

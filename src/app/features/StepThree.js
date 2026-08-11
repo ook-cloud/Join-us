@@ -5,7 +5,7 @@ import { ImageIcon } from "../icons/ImageIcon";
 
 export const StepThree = ({ handleNextStep, handleBackButton }) => {
   return (
-    <div className="w-[480px] h-[655px] rounded-lg flex flex-col justify-between p-8 bg-white border border-gray-100 shadow-sm">
+    <div className="w-120 h-164 rounded-lg flex flex-col justify-between p-8 bg-white border border-gray-100 shadow-sm">
       <div className="flex flex-col gap-7">
         <PineconeIcon />
 
@@ -32,7 +32,7 @@ export const StepThree = ({ handleNextStep, handleBackButton }) => {
               Profile image <span className="text-red-500">*</span>
             </label>
 
-            <div className="w-full h-[180px] min-h-[80px] rounded-lg p-4 gap-2 bg-[#7F7F800D] flex items-center justify-center flex-col border border-dashed border-[#CBD5E1] cursor-pointer hover:bg-gray-100 transition-colors">
+            <div className="w-full h-45 min-h-20 rounded-lg p-4 gap-2 bg-[#7F7F800D] flex items-center justify-center flex-col border border-dashed border-[#CBD5E1] cursor-pointer hover:bg-gray-100 transition-colors">
               <ImageIcon />
               <span className="text-sm font-semibold text-gray-800">
                 Add image

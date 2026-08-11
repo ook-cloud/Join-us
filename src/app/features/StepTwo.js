@@ -7,9 +7,9 @@ export const StepTwo = ({ handleNextStep, handleBackButton }) => {
     e.preventDefault();
     handleNextStep();
   };
-
+  z;
   return (
-    <div className="bg-white rounded-2xl shadow-sm w-full max-w-[440px] p-8">
+    <div className="bg-white rounded-2xl shadow-sm w-full max-w-110 p-8">
       <form onSubmit={handleSubmit} className="flex flex-col gap-6">
         <PineconeIcon />
 
