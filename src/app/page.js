@@ -34,7 +34,7 @@ export default function Home() {
       try {
         setFormData(JSON.parse(savedData));
       } catch (e) {
-        console.error("Localstorage parsing error", e);
+        console.error("Parse error", e);
       }
     }
   }, []);

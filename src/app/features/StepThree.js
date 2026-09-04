@@ -94,7 +94,7 @@ export const StepThree = ({
               }`}
             >
               {formData.profileImage ? (
-                <div className="relative w-full h-full group">
+                <div className="relative w-full h-full">
                   <img
                     src={formData.profileImage}
                     alt="Profile Preview"
