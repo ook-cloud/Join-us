@@ -2,6 +2,8 @@ import { useState } from "react";
 import { PineconeIcon } from "../icons/PineconeIcon";
 import { PrevArrow } from "../icons/PrevArrow";
 import { NextArrow } from "../icons/NextArrow";
+import { Eye } from "../icons/Eye";
+import { EyeOff } from "../icons/EyeOff";
 
 export const StepTwo = ({
   handleNextStep,
@@ -10,37 +12,46 @@ export const StepTwo = ({
   updateFormData,
 }) => {
   const [errors, setErrors] = useState({});
+  const [shakingField, setShakingField] = useState(null);
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   const validate = () => {
     const newErrors = {};
 
     if (!formData.email) {
-      newErrors.email = "Имэйл хаягаа оруулна уу.";
+      newErrors.email = "Please enter your email.";
     }
 
     if (!formData.phone) {
-      newErrors.phone = "Утасны дугаараа оруулна уу.";
+      newErrors.phone = "Please enter your phone number.";
     } else if (!/^\d{8}$/.test(formData.phone)) {
-      newErrors.phone = "Утасны дугаар яг 8 оронтой тоо байх ёстой.";
+      newErrors.phone = "Phone number must be exactly 8 digits.";
     }
 
     const passwordRegex =
       /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
     if (!formData.password) {
-      newErrors.password = "Нууц үгээ оруулна уу.";
+      newErrors.password = "Please enter a password.";
     } else if (!passwordRegex.test(formData.password)) {
       newErrors.password =
-        "Нууц үг доод тал нь 8 оронтой, том, жижиг үсэг, тоо болон тусгай тэмдэгт (!@#$%^&*) агуулсан байх ёстой.";
+        "Password must be at least 8 characters, including uppercase, lowercase, numbers, and special characters (!@#$%^&*).";
     }
 
     if (!formData.confirmPassword) {
-      newErrors.confirmPassword = "Нууц үгээ давтан оруулна уу.";
+      newErrors.confirmPassword = "Please confirm your password.";
     } else if (formData.password !== formData.confirmPassword) {
-      newErrors.confirmPassword = "Нууц үг зөрж байна.";
+      newErrors.confirmPassword = "Passwords do not match.";
     }
 
     setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
+    if (Object.keys(newErrors).length > 0) {
+      setShakingField(true);
+      setTimeout(() => setShakingField(false), 500);
+      return false;
+    }
+
+    return true;
   };
 
   const handleSubmit = (e) => {
@@ -64,6 +75,17 @@ export const StepTwo = ({
 
   return (
     <div className="bg-white rounded-2xl shadow-sm w-full max-w-[440px] p-8">
+      <style>{`
+        @keyframes textShake {
+          0%, 100% { transform: translateX(0); }
+          20%, 60% { transform: translateX(-6px); }
+          40%, 80% { transform: translateX(6px); }
+        }
+        .animate-text-shake {
+          animation: textShake 0.4s ease-in-out;
+        }
+      `}</style>
+
       <form onSubmit={handleSubmit} className="flex flex-col gap-6">
         <PineconeIcon />
 
@@ -75,6 +97,7 @@ export const StepTwo = ({
         </div>
 
         <div className="flex flex-col gap-4">
+          {/* Email */}
           <div className="flex flex-col gap-1.5">
             <label className="text-xs font-semibold text-gray-800">
               Email <span className="text-red-500">*</span>
@@ -92,10 +115,17 @@ export const StepTwo = ({
               }`}
             />
             {errors.email && (
-              <span className="text-xs text-red-500">{errors.email}</span>
+              <span
+                className={`text-xs text-red-500 font-medium inline-block ${
+                  shakingField ? "animate-text-shake" : ""
+                }`}
+              >
+                ⚠️ {errors.email}
+              </span>
             )}
           </div>
 
+          {/* Phone */}
           <div className="flex flex-col gap-1.5">
             <label className="text-xs font-semibold text-gray-800">
               Phone number <span className="text-red-500">*</span>
@@ -113,50 +143,86 @@ export const StepTwo = ({
               }`}
             />
             {errors.phone && (
-              <span className="text-xs text-red-500">{errors.phone}</span>
+              <span
+                className={`text-xs text-red-500 font-medium inline-block ${
+                  shakingField ? "animate-text-shake" : ""
+                }`}
+              >
+                ⚠️ {errors.phone}
+              </span>
             )}
           </div>
 
+          {/* Password */}
           <div className="flex flex-col gap-1.5">
             <label className="text-xs font-semibold text-gray-800">
               Password <span className="text-red-500">*</span>
             </label>
-            <input
-              type="password"
-              name="password"
-              value={formData.password || ""}
-              onChange={handleChange}
-              placeholder="Create a password"
-              className={`w-full h-11 px-3 border rounded-lg text-sm text-gray-700 outline-none transition-colors placeholder:text-gray-400 ${
-                errors.password
-                  ? "border-red-500"
-                  : "border-[#CBD5E1] focus:border-black"
-              }`}
-            />
+            <div className="relative flex items-center">
+              <input
+                type={showPassword ? "text" : "password"}
+                name="password"
+                value={formData.password || ""}
+                onChange={handleChange}
+                placeholder="Create a password"
+                className={`w-full h-11 pl-3 pr-10 border rounded-lg text-sm text-gray-700 outline-none transition-colors placeholder:text-gray-400 ${
+                  errors.password
+                    ? "border-red-500"
+                    : "border-[#CBD5E1] focus:border-black"
+                }`}
+              />
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                className="absolute right-3 text-gray-500 hover:text-gray-700 focus:outline-none"
+              >
+                {showPassword ? <EyeOff /> : <Eye />}
+              </button>
+            </div>
             {errors.password && (
-              <span className="text-xs text-red-500">{errors.password}</span>
+              <span
+                className={`text-xs text-red-500 font-medium inline-block ${
+                  shakingField ? "animate-text-shake" : ""
+                }`}
+              >
+                ⚠️ {errors.password}
+              </span>
             )}
           </div>
 
+          {/* Confirm Password */}
           <div className="flex flex-col gap-1.5">
             <label className="text-xs font-semibold text-gray-800">
               Confirm password <span className="text-red-500">*</span>
             </label>
-            <input
-              type="password"
-              name="confirmPassword"
-              value={formData.confirmPassword || ""}
-              onChange={handleChange}
-              placeholder="Confirm your password"
-              className={`w-full h-11 px-3 border rounded-lg text-sm text-gray-700 outline-none transition-colors placeholder:text-gray-400 ${
-                errors.confirmPassword
-                  ? "border-red-500"
-                  : "border-[#CBD5E1] focus:border-black"
-              }`}
-            />
+            <div className="relative flex items-center">
+              <input
+                type={showConfirmPassword ? "text" : "password"}
+                name="confirmPassword"
+                value={formData.confirmPassword || ""}
+                onChange={handleChange}
+                placeholder="Confirm your password"
+                className={`w-full h-11 pl-3 pr-10 border rounded-lg text-sm text-gray-700 outline-none transition-colors placeholder:text-gray-400 ${
+                  errors.confirmPassword
+                    ? "border-red-500"
+                    : "border-[#CBD5E1] focus:border-black"
+                }`}
+              />
+              <button
+                type="button"
+                onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                className="absolute right-3 text-gray-500 hover:text-gray-700 focus:outline-none"
+              >
+                {showConfirmPassword ? <EyeOff /> : <Eye />}
+              </button>
+            </div>
             {errors.confirmPassword && (
-              <span className="text-xs text-red-500">
-                {errors.confirmPassword}
+              <span
+                className={`text-xs text-red-500 font-medium inline-block ${
+                  shakingField ? "animate-text-shake" : ""
+                }`}
+              >
+                ⚠️ {errors.confirmPassword}
               </span>
             )}
           </div>
